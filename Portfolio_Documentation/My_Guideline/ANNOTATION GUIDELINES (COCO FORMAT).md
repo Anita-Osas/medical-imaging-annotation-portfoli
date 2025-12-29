@@ -329,6 +329,10 @@ For a pleural effusion case:
 
 
 
+### **Acknowledgments**
+Label Studio for annotation platform
+Yamah Princewill B.Rad.
+
 
 
 
