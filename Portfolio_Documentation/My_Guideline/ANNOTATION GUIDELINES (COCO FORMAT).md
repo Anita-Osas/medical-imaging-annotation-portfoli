@@ -1,357 +1,208 @@
-# **ANNOTATION GUIDELINES (COCO FORMAT)** 
+# Annotation Guidelines (COCO Format)
 
-## **Medical Chest X-ray Annotation** 
+## Medical Chest X-ray Annotation
 
-Project Pathologies: Pericardial Effusion, Pneumothorax, Pleural Effusion, Bronchopneumonia, Lobar Pneumonia 
+**Project Pathologies:**  
+Pericardial Effusion, Pneumothorax, Pleural Effusion, Bronchopneumonia, Lobar Pneumonia  
 
-Dataset size: 50 images (10 per pathology) 
+**Dataset Size:** 50 chest X-ray images (10 per pathology)  
 
-Annotation Type: Polygon segmentation + bounding boxes (COCO JSON) 
+**Annotation Types:**  
+- Polygon segmentation  
+- Bounding boxes  
 
-Annotation Tool: Label Studio
+**Export Format:** COCO JSON  
 
+**Annotation Tool:** Label Studio  
 
+---
 
+## 1. Project Overview
 
+This document outlines the annotation guidelines followed during the annotation of five common thoracic pathologies on chest X-rays.
 
+A total of **50 de-identified radiographs** were annotated, with **10 images per pathology**, using clinically grounded radiology principles. The objective was to produce **high-quality, clinically meaningful training data** suitable for healthcare computer vision models.
 
+This project demonstrates:
 
-##### 1.PROJECT OVERVIEW 
+- Strong understanding of chest X-ray anatomy and pathology  
+- Precision and consistency in medical image annotation  
+- Ability to work with industry-standard formats (COCO JSON)  
+- Careful clinical reasoning and attention to edge cases  
 
-This project documents my work annotating five common chest pathologies found on X-rays. I annotated 10 de-identified radiographs for each condition, following standard radiology principles and paying close attention to how these conditions actually present clinically. The goal was to create a high-quality medical imaging dataset that demonstrates: 
+All annotations were completed in **Label Studio**, with deliberate review of anatomical boundaries, disease presentation patterns, and ambiguous regions.
 
-\- Understanding of chest X-ray anatomy and pathology 
+---
 
-\- Precision in medical image annotation 
+## 2. General Annotation Approach
 
-\- Ability to work with industry-standard formats (COCO JSON) 
+### Image Sources
+All images were obtained from **publicly available, fully de-identified medical imaging datasets**.
 
-\- Attention to clinical detail and differential diagnosis 
+### Core Principles Followed
 
+#### 2.1 Polygon-Based Annotation for Accuracy
+Most thoracic pathologies do not have sharp or rectangular boundaries. Polygon segmentation was used to accurately trace:
 
+- Fluid collections and their meniscus curves  
+- Areas of lung consolidation  
+- The pleural line in pneumothorax  
+- Irregular, patchy opacity patterns in pneumonia  
 
-All annotations were done in Label Studio with careful review of anatomical boundaries, typical disease patterns, and edge cases. 
+#### 2.2 Respect for Anatomical Boundaries
+Annotations were strictly confined to pathological regions and were carefully kept within anatomical limits.
 
+**I avoided crossing into:**
+- Ribs and other bony structures  
+- The spine  
+- The contralateral lung hilum  
+- Normal mediastinal structures  
+- Normal lung tissue (except where directly affected)
 
+**I excluded:**
+- Normal lung markings and vessels  
+- Air-filled lung spaces  
+- Artifacts and overlying external structures  
+- The diaphragm unless directly involved by pathology  
 
+Natural opacity transitions were followed rather than forcing artificially sharp borders.
 
+---
 
+## 3. Pathology-Specific Guidelines
 
+### 3.1 Pericardial Effusion
 
-##### 
+**Radiographic Indicators:**
+- Enlarged, globular (“water bottle”) cardiac silhouette  
+- Symmetrical widening of the heart borders  
+- Loss of normal cardiac contour definition  
 
-##### 2\. GENERAL ANNOTATION APPROACH
+**Annotation Method:**
+- A **bounding box** was drawn around the entire enlarged cardiac silhouette.
+- Since pericardial effusion is inferred rather than directly visualized, the bounding box follows the outer margin of the pericardial sac as seen on the X-ray.
 
+**Avoided:**
+- Annotating only part of the heart  
+- Including adjacent normal mediastinal structures  
 
+---
 
-###### Image Sources: 
+### 3.2 Pneumothorax
 
-All images are from publicly available, de-identified medical imaging datasets. 
+**Radiographic Indicators:**
+- Thin, sharp white line representing the visceral pleural edge  
+- Absence of lung markings beyond this line  
 
+**Annotation Method:**
+- The clinically significant feature—the **visceral pleural line**—was annotated.
+- A **polygon** was used to trace the pleural edge from its visible start to end point and closed back onto itself.
+- This approach was used instead of outlining the entire collapsed lung, which is largely featureless.
 
+**Avoided:**
+- Including normal lung tissue beyond the pleural line  
+- Misidentifying skin folds or scapular edges as pleural lines  
 
-###### Core principles I followed 
+---
 
-###### 2.1 Use polygons for accuracy 
+### 3.3 Pleural Effusion
 
-Most pathologies don't have perfectly sharp edges. I used polygons to accurately trace: 
+**Radiographic Indicators:**
+- Basal white opacity  
+- Upward-curving meniscus sign  
+- Blunted costophrenic angle  
+- Fluid layering along the diaphragm  
 
-\- Fluid collections and their meniscus curves 
+**Annotation Method:**
+- The fluid collection was traced using polygon segmentation.
+- Annotation typically started at the blunted lateral costophrenic angle.
+- The meniscus curve (concave upward) was carefully followed.
+- For large effusions, tracing extended medially along the mediastinum.
+- Annotation remained below visible lung markings.
 
-\- Consolidated lung tissue 
+**Avoided:**
+- Annotating the entire diaphragm when only the angle was involved  
+- Combining pneumonia and effusion into a single annotation  
 
-\- Pleural line in pneumothorax 
+---
 
-\- Irregular opacity patterns in pneumonia 
+### 3.4 Bronchopneumonia
 
-###### 
+**Radiographic Indicators:**
+- Multiple patchy, ill-defined opacities  
+- Fuzzy borders  
+- Frequent lower zone involvement  
+- Possible air bronchograms  
 
-###### 2.2 Stay within anatomical boundaries 
+**Annotation Method:**
+- Each patch of abnormal opacity was annotated **separately**.
+- Loose polygons were used to reflect the naturally hazy borders.
+- No attempt was made to force sharp or anatomical boundaries.
 
-I was careful not to cross into: 
+**Avoided:**
+- Connecting clearly separate patches  
+- Over-precision in inherently indistinct infiltrates  
+- Forcing lobar boundaries where none were visible  
 
-\- Ribs and bony structures 
+---
 
-\- The opposite hilum 
+### 3.5 Lobar Pneumonia
 
-\- The spine 
+**Radiographic Indicators:**
+- Dense consolidation occupying an entire anatomical lobe  
+- Sharp borders along fissure lines (when visible)  
+- Silhouette sign (loss of heart or diaphragm border)  
 
-\- Normal mediastinal structures (except for pericardial effusion where the heart itself is affected) 
+**Annotation Method:**
+- A **single polygon** was used to cover the entire consolidated lobe.
+- Fissure lines were followed when visible.
+- Where fissures were obscured, the outer edge of dense opacity was used.
+- Air bronchograms within the consolidation were included.
 
-\- Annotate only the pathology 
+**Avoided:**
+- Extending into adjacent unaffected lobes  
+- Excluding regions obscured by silhouette sign  
 
+---
 
+## 4. Quality Control Process
 
-###### I excluded: 
+Each annotation underwent a three-step review process:
 
-Normal lung markings and vessels 
+### Consistency Check
+- Verified polygons accurately followed opacity borders  
+- Confirmed correct pathology labels  
+- Ensured annotations did not overlap incorrectly  
 
-Normal air-filled spaces 
+### Clinical Accuracy Check
+- Cross-checked findings against standard radiology criteria  
+- Verified classic signs (meniscus sign, silhouette sign)  
+- Reconfirmed pneumothorax pleural lines  
 
-The diaphragm (unless directly affected by the pathology) 
+### Technical Validation
+- Confirmed COCO JSON exports loaded without errors  
+- Reviewed annotations using the Label Studio viewer  
 
-Any artifacts or overlying structures 
+---
 
-Follow natural transitions rather than forcing sharp artificial boundaries. I traced the actual edges of opacities as they appear on the X-ray, which are often gradual or hazy. 
+## 5. Tools & Workflow
 
+- **Annotation Software:** Label Studio  
+- **Export Format:** COCO JSON (polygon segmentation + bounding boxes)  
+- **Workflow:** Systematic image review prior to annotation  
+- **Time Investment:** ~8–12 minutes per image  
 
+---
 
+## 6. Example Annotation Note
 
+**Pleural Effusion Case Example:**
 
+> “The left costophrenic angle is clearly blunted with a classic upward meniscus curve. A polygon was drawn following the fluid density, respecting the soft curvature of the meniscus and stopping medially at the diaphragm border.”
 
+---
 
+## Acknowledgments
 
-
-##### **3.PATHOLOGY-SPECIFIC GUIDELINES** 
-
-
-
-###### 3.1 Pericardial Effusion 
-
-What I looked for:
-
-\- "Water bottle" shaped heart (enlarged and globular). 
-
-\- Symmetrical widening of the cardiac silhouette 
-
-\- Loss of the normal heart contours 
-
-
-
-How I annotated it: I drew a bounding box around the entire enlarged cardiac silhouette since the effusion itself isn't directly visible, we infer it from the heart's abnormal shape and size. The bounding box follows the outer border of the pericardial sac as it appears on the X-ray. 
-
-
-
-What I avoided: Annotating only part of the heart including normal mediastinal structures above or beside the heart 
-
-
-
-
-
-
-
-###### 3.2 Pneumothorax 
-
-What I looked for: 
-
-Thin,sharp white line (the visceral pleural edge)
-
-Dark area with NO lung markings beyond that line
-
-
-
-How I annotated it:
-
-\- Instead of tracing the entire collapsed lung area (which is mostly dark and featureless), I focused on the visceral pleural edge itself.
-
-\- Using a polygon, I traced the pleural edge from its visible starting point to its visible endpoint, then back again to complete the shape.
-
-\- This method allowed me to accurately capture the clinically significant boundary of the pneumothorax, even though Label Studio does not have a polyline tool.
-
-
-
-What I avoided:
-
-Including normal lung tissue beyond the pleural line
-
-Confusing skin folds or scapular edges with the pleural edge
-
-
-
-
-
-###### 3.3 Pleural Effusion
-
-What I looked for: 
-
-White opacity at the lung base 
-
-Curved upward fluid line (meniscus sign) 
-
-Blunted costophrenic angle 
-
-Fluid layering along the diaphragm 
-
-
-
-How I annotated it
-
-\- I traced the fluid collection carefully
-
-\- Started at the lateral costophrenic angle where it's blunted 
-
-\- Followed the meniscus curve (which is concave upward) 
-
-\- Traced along the mediastinum if the effusion is large 
-
-\- Stayed below any visible lung markings 
-
-
-
-What I avoided:
-
-Including the entire diaphragm when only the angle is blunted 
-
-Mixing pneumonia and effusion into one annotation (I separated them)
-
-
-
-
-
-###### 3.4 Bronchopneumonia 
-
-What I looked for: 
-
-Multiple patchy white areas scattered through the lungs 
-
-Fuzzy, ill-defined borders 
-
-Often affects both lower lung zones 
-
-May show air bronchograms (dark airways visible through white consolidation)
-
-&nbsp;
-
-How I annotated it: I traced each patch of abnormal opacity separately. Because bronchopneumonia is inherently patchy and hazy, I used loose polygons that follow the general shape without forcing clean edges.
-
-
-
-What I avoided: Connecting separate patches that are clearly distinct. Trying to make the borders too precise (these infiltrates are naturally fuzzy.) Forcing the annotation into anatomical lobe boundaries.
-
-
-
-
-
-###### 3.5 Lobar Pneumonia 
-
-What I looked for: 
-
-Dense white consolidation filling an entire anatomical lobe 
-
-Sharp borders along the fissure lines
-
-Silhouette sign (loss of heart or diaphragm border) 
-
-
-
-How I annotated it: One polygon covering the entire consolidated lobe. I followed the fissure lines when visible, and when they weren't clear, I followed the edge of the dense opacity. I included any air bronchograms within the polygon since they're part of the consolidated area.
-
-
-
-What I avoided: Crossing into adjacent unaffected lobes. Missing areas where the silhouette sign makes borders less obvious.
-
-
-
-
-
-
-
-
-
-
-
-##### **4.QUALITY CONTROL PROCESS**
-
-
-
-
-
-&nbsp;I reviewed each annotation through three checks: 
-
-
-
-\* Consistency Check
-
-Verified polygons accurately follow the opacity borders. 
-
-Made sure labels match the correct pathology 
-
-Checked that no annotations overlap inappropriately.
-
-
-
-
-
-\* Clinical Accuracy Check 
-
-Compared my annotations to standard radiology criteria. 
-
-Verified I correctly identified signs like the meniscus or silhouette sign 
-
-Double-checked pneumothorax pleural lines.
-
-
-
-
-
-\* Technical Validation 
-
-Confirmed COCO JSON files load without errors. 
-
-Reviewed annotations in Label Studio viewer 
-
-
-
-
-
-
-
-
-
-##### **5.TOOLS \& WORKFLOW** 
-
-
-
-Annotation Software: Label Studio
-
-Export Format: COCO JSON with polygon segmentation + bounding boxes
-
-Image Handling: Systematic review of each case before annotation 
-
-Time Investment: Approximately 8-12 minutes per case for careful annotation.
-
-
-
-
-
-
-
-
-
-##### **6.EXAMPLE ANNOTATION NOTE**
-
-
-
-For a pleural effusion case:
-
-"The left costophrenic angle is clearly blunted with the classic upward meniscus curve. I traced a polygon following the fluid density, carefully respecting the soft meniscus curvature and stopping at the medial border where it meets the diaphragm."
-
-
-
-
-### **Acknowledgments**
-
-I am grateful to Dr. Yamah Princewill B.Rad., Consultant Radiologist, for offering radiology guidance and performing an independent review of selected annotations. His cross-checking of findings supported clinical correctness, particularly in anatomical localization and interpretation of radiographic signs.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+I am grateful to **Yamah Princewill, B.Rad., Radiologist**, for providing radiology guidance and performing an independent review of selected annotations.  
+His cross-checking supported clinical accuracy, particularly in anatomical localization and interpretation of radiographic signs.
