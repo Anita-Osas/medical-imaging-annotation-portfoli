@@ -91,16 +91,16 @@ Total: 50 images with 80 individual annotations (approximate)
 
 ## Sample Annotations
 
-Sample annotation screenshots are available in the `/Workflow_Screenshots` directory and include:
+Sample annotation screenshots are available in the `Portfolio_Documentation/Annotated_samples/15_annotated_samples` directory and include:
 
-- Lobar pneumonia (/Screenshot_8-12-2025_14849_localhost.jpeg)
-  *Segmentation of left lung mid zone consolidation*
+- Lobar pneumonia `Portfolio_Documentation/Annotated_samples/15_annotated_samples/lobar_pneumonia_example.png.jpeg`
+  *Segmentation of left and right lower lobe consolidation*
   
-- Pneumothorax (/Screenshot_8-12-2025_145538_localhost.jpeg)
-  *Polyline outlining pleural line left lung*
+- Pneumothorax `Portfolio_Documentation/Annotated_samples/15_annotated_samples/pneumothorax_example.png.jpeg`
+  *Polyline outlining pleural line right lung apex*
   
-- Pleural effusion – (Screenshot_8-12-2025_141347_localhost.jpeg)
-  *Segmentation of effusion lower left lobe*  
+- Pleural effusion – `Portfolio_Documentation/Annotated_samples/15_annotated_samples/pleural_effusion_example.png.jpeg`
+  *Segmentation of effusion left lower lobe*  
 
 *(Full annotated datasets available upon request due to size limitations.)*
 
