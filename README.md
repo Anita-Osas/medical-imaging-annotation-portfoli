@@ -11,7 +11,13 @@ This project demonstrates my ability to combine clinical reasoning, anatomical k
 
 All images were sourced from publicly available, fully de-identified datasets and annotated using industry-standard annotation tools and workflows.
 
-Role Target: Medical Imaging Annotator | Clinical Data Annotator  
+Role Target:
+- Medical Imaging Annotator
+- Clinical Data Annotator
+- Healthcare AI QA Analyst
+- Radiology AI Evaluator
+- LLM Healthcare Data Specialist
+
 Focus Areas: Chest X-ray annotation, clinical imaging QA  
 Availability: Immediate | Remote  
 
@@ -33,7 +39,9 @@ Total: 50 images with 80 individual annotations (approximate)
 
 ## Tools & Technologies
 
-- Label Studio – Primary annotation platform   
+- Label Studio – Primary annotation platform
+- CVAT – Additional annotation tool used for bounding box and segmentation workflows
+- Custom XML configuration schemasm - Written to define annotation labels, attributes, and structured clinical metadata within Label Studio
 
 ---
 
@@ -182,6 +190,17 @@ Given additional time and resources, this project could be expanded by:
 
 ## Background & Certifications
 
+## Why a Registered Nurse?
+
+Most medical imaging annotators are trained in data labeling workflows, not clinical medicine. As a licensed Registered Nurse with 3,500+ hours of supervised clinical training across Internal Medicine, Surgery, Pediatrics, and Obstetrics, I bring something fundamentally different:
+
+- I can identify Pneumothorax, Pleural Effusion, and Lobar Pneumonia because I have reviewed these findings at the bedside, not because I memorised a label
+- I understand the clinical significance of tracheal deviation, air bronchograms, and meniscus signs and can annotate them with appropriate severity grading
+- I know what an ambiguous or technically poor image looks like clinically, which improves edge case documentation
+- I can distinguish between findings that are annotation-ready and findings that require expert radiologist review, reducing noise in training datasets
+
+This means my annotations are not just geometrically accurate, they are **clinically informed**.
+
 - Bachelor of Science in Nursing (BSc)
 - Registered Nurse (RN) – Licensed (Nigeria)
 - Data Analytics Certification
@@ -203,10 +222,16 @@ Given additional time and resources, this project could be expanded by:
 
 I am actively seeking remote roles as a:
 
-- Medical Imaging Annotator  
-- Clinical Data Annotator  
-- AI Training Data Specialist  
-- Healthcare Annotation QA Support  
+- Medical Imaging Annotator
+- Clinical Data Annotator
+- Radiology AI Evaluator
+- Healthcare AI QA Analyst
+- AI Training Data Specialist
+- LLM Healthcare Safety Reviewer
+
+**Geographic Availability:** Open to remote opportunities globally including US, EU, and UAE-based healthcare AI companies.  
+**Compliance Familiarity:** HIPAA (certified), GDPR-aware, NABIDH-aligned data handling principles.  
+**Immediate availability for contract, part-time, or full-time remote engagement.**
 
 What I Offer
 - Clinical expertise combined with annotation precision  
@@ -229,10 +254,11 @@ This portfolio is for demonstration purposes only.
 All medical images used are:
 - Publicly available datasets (e.g., NIH Chest X-ray collections)  
 - Fully de-identified in accordance with HIPAA standards  
-- Used strictly for educational and portfolio demonstration  
+- Used strictly for educational and portfolio demonstration
+- Annotations follow de-identification standards compatible with HIPAA, GDPR, and regional health data frameworks (including UAE NABIDH-aligned data handling principles)  
 
 ---
 
 *If you’re a recruiter or hiring manager, I’d be happy to discuss how my clinical annotation skills can support your healthcare AI projects.*
 
-Last Updated: December 2025
+Last Updated: March 2026
